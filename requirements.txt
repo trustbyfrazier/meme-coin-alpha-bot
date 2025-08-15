@@ -1,0 +1,7 @@
+python-dotenv
+requests
+pyTelegramBotAPI
+aiohttp
+Jinja2
+tenacity
+

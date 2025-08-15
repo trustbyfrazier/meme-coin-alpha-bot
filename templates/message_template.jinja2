@@ -1,0 +1,39 @@
+<b>{{ name }}</b> (${{ symbol }}) @ {{ "{:,}".format(mcap) }} MC
+
+<code>{{ id }}</code>
+
+🔄 Bonding Curve: {{ bondingCurvePct }}%
+
+📝 {{ summary }}
+
+<code>{{ createdAt }}</code>
+
+{% if icon %}
+🖼 Image: {{ icon }}
+{% endif %}
+
+---
+
+{# Compact links on one line, only show what exists #}
+{% set any_links = twitter or website or telegram or reddit or tiktok %}
+{% if any_links %}
+🔗
+{% if twitter %}<a href="{{ twitter }}">Twitter</a>{% endif %}
+{% if website %}{% if twitter %} • {% endif %}<a href="{{ website }}">Website</a>{% endif %}
+{% if telegram %}{% if twitter or website %} • {% endif %}<a href="{{ telegram }}">Telegram</a>{% endif %}
+{% if reddit %}{% if twitter or website or telegram %} • {% endif %}<a href="{{ reddit }}">Reddit</a>{% endif %}
+{% if tiktok %}{% if twitter or website or telegram or reddit %} • {% endif %}<a href="{{ tiktok }}">TikTok</a>{% endif %}
+{% endif %}
+
+👥 Holders: {{ holderCount }}
+🌿 Organic Score: {{ "%.2f"|format(organicScore) }}
+
+{% if similarCoins %}
+<b>🔎 Similar Coins:</b>
+{% for coin in similarCoins %}
+— <code>{{ coin.id }}</code> | Created: {{ coin.createdAt }} | @ {{ "{:,}".format(int(coin.mcap or 0)) }} MC
+{% endfor %}
+{% endif %}
+
+<i>AlphaSniper Bot 🚀 | Powered by JubEdge</i>
+
